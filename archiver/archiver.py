@@ -42,7 +42,8 @@ def execute_subprocess(command):
 
 def get_valid_filename(s):
     s = str(s).strip().replace(' ', '_')
-    return re_sub(r'(?u)[^-\w.]', "", s)
+    regex_expr = r'(?u)[^-\w.]'
+    return re_sub(regex_expr, "", s)
 
 
 def clean_file_name(filename):
