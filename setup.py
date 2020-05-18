@@ -13,7 +13,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Isaac Williams',
-    author_email='isaac.williams@secura.nl',
+    author_email='isaac.williams@secura.com',
     description='A 7zip archiver',
     install_requires=[
         'cryptography',

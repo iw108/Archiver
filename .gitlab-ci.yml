@@ -15,4 +15,4 @@ tox:
   before_script:
     - pip install tox
   script:
-    - tox -e flake8
+    - tox
