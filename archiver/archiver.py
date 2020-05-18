@@ -42,7 +42,7 @@ def execute_subprocess(command):
 
 def get_valid_filename(s):
     s = str(s).strip().replace(' ', '_')
-    return re_sub(r'[^-\w.]', "", s)
+    return re_sub(r"[^-\w.]", "", s)
 
 
 def clean_file_name(filename):
@@ -171,8 +171,8 @@ class ArchiveManager(object):
                 continue
             file_item = file_list[-1]
 
-            key = re_match(r'^\w+', line)[0].lower()
-            value = re_sub(r'^\w+\s=\s', "", line)
+            key = re_match(r"^\w+", line)[0].lower()
+            value = re_sub(r"^\w+\s=\s", "", line)
             file_item.update({key: value})
 
         return [f for f in file_list if f]
