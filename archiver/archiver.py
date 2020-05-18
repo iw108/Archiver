@@ -7,8 +7,6 @@ from shlex import split as shlex_split
 from subprocess import PIPE, Popen  # nosec
 from threading import Timer
 
-from archiver.utils import get_valid_filename
-
 
 ARCHIVE_TIMEOUT = 15
 
@@ -41,6 +39,10 @@ def execute_subprocess(command):
 
     return out.decode()
 
+
+def get_valid_filename(s):
+    s = str(s).strip().replace(' ', '_')
+    return re_sub(r'[^-\w.]', "", s)
 
 
 def clean_file_name(filename):
