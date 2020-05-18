@@ -15,9 +15,6 @@ setup(
     author='Isaac Williams',
     author_email='isaac.williams@secura.com',
     description='A 7zip archiver',
-    install_requires=[
-        'cryptography',
-    ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

@@ -7,8 +7,6 @@ from shlex import split as shlex_split
 from subprocess import PIPE, Popen  # nosec
 from threading import Timer
 
-from .utils import get_sha256_checksum
-
 
 ARCHIVE_TIMEOUT = 15
 
@@ -68,10 +66,6 @@ class ArchiveManager(object):
         'list': "7z l -slt -ba {path_args}",
         'rename': "7z rn -bso0 -bsp0 {path_args}",
         'encrypt': "7z a -mem=AES256 -p{key} -y -bso0 -bsp0 {path_args}"
-    }
-
-    extra_args = {
-        'encrypt': '-mem=AES256 -p{password} -y'
     }
 
     def __init__(self, path=None):
@@ -215,12 +209,10 @@ class ArchiveManager(object):
         command = self.get_command('rename', path_args=path_args)
         execute_subprocess(command)
 
-    def encrypt_file(self, archive_name, file_name, key=None):
+    def encrypt_file(self, archive_name, file_name, key):
         archive_path = self.clean_archive_name(archive_name)
 
         file_path = self.clean_filename(file_name)
-        if not key:
-            key = get_sha256_checksum(key)
 
         path_args = format_path_args(archive_path, file_path)
         command = self.get_command('encrypt', path_args=path_args, key=key)
@@ -230,7 +222,6 @@ class ArchiveManager(object):
             if archive_path.exists():
                 os_remove(archive_path)
             raise ArchiveError(error)
-        return key
 
 
 class LockedDownArchiveManager(ArchiveManager):
