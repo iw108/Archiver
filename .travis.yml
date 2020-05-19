@@ -1,15 +1,11 @@
 language: python
 dist: bionic
 
-addons:
- apt:
-  sources:
-   - p7zip-full
-
 python:
  - 3.6
 
+before_install:
+ - sudo apt install p7zip-full
 install: pip install tox-travis codecov
 script: tox
 after_success: codecov
-
