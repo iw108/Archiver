@@ -5,7 +5,7 @@ python:
  - 3.6
 
 before_install:
- - sudo apt install p7zip-full
+ - sudo apt-get install -y p7zip-full
 install: pip install tox-travis codecov
 script: tox
 after_success: codecov
